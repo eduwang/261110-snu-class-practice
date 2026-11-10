@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="OpenAI Responses API로 만드는 간결한 대화 실습 공간" />
+    <title>Plain — 대화 실습</title>
+  </head>
+  <body>
+    <div class="page">
+      <header class="page-header">
+        <a class="brand" href="./" aria-label="Plain 홈">
+          <span class="brand-mark" aria-hidden="true">p.</span>
+          <span>plain<span class="brand-period">.</span></span>
+        </a>
+        <span class="lab-label">CHAT LAB <span aria-hidden="true">/</span> 01</span>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <p class="eyebrow">A LITTLE SPACE FOR YOUR QUESTIONS</p>
+          <h1 id="page-title">질문에서 시작하는 대화.</h1>
+          <p class="intro-description">작은 궁금증부터 새로운 아이디어까지, 편하게 이야기해 보세요.</p>
+        </section>
+
+        <section class="chat" aria-labelledby="chat-title">
+          <header class="chat-header">
+            <div>
+              <h2 id="chat-title">대화 공간</h2>
+              <p class="model-label">OpenAI <span aria-hidden="true">·</span> <span id="model-name"></span></p>
+            </div>
+            <button id="reset-button" class="reset-button" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10a8 8 0 1 1 1.8 7M4 4v6h6" /></svg>
+              대화 초기화
+            </button>
+          </header>
+
+          <div class="conversation" id="conversation">
+            <div class="empty-state" id="empty-state">
+              <div class="empty-mark" aria-hidden="true">
+                <svg viewBox="0 0 48 48"><path d="M12 11h24a5 5 0 0 1 5 5v15a5 5 0 0 1-5 5H22l-10 7v-7a5 5 0 0 1-5-5V16a5 5 0 0 1 5-5Z" /><path d="M16 21h16M16 27h10" /></svg>
+              </div>
+              <p class="empty-title">어떤 이야기를 해볼까요?</p>
+              <p>첫 질문을 남겨 보세요.<br />이어지는 질문도 대화의 맥락 안에서 답해 드려요.</p>
+            </div>
+            <div id="messages" class="messages" role="log" aria-label="대화 내용" aria-live="polite" aria-relevant="additions"></div>
+          </div>
+
+          <div class="composer-area">
+            <p id="loading" class="loading" role="status" hidden>
+              <span class="loading-dot" aria-hidden="true"></span>답변을 작성하고 있어요…
+            </p>
+            <form id="chat-form" class="composer">
+              <label class="sr-only" for="message-input">메시지</label>
+              <textarea id="message-input" name="message" rows="2" placeholder="궁금한 내용을 입력하세요…" aria-describedby="input-hint feedback" required></textarea>
+              <button id="send-button" class="send-button" type="submit" disabled>
+                <span id="send-label">전송</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6" /></svg>
+              </button>
+            </form>
+            <div class="composer-meta">
+              <p id="input-hint">Enter 전송 <span aria-hidden="true">·</span> Shift + Enter 줄바꿈</p>
+              <p>대화는 이 페이지에서만 유지됩니다.</p>
+            </div>
+          </div>
+
+          <footer class="connection-bar">
+            <p class="api-status" id="api-status" role="status" data-state="missing">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span>API</span><strong id="status-text">키 미설정</strong>
+            </p>
+            <p id="feedback" class="feedback" role="alert"></p>
+          </footer>
+        </section>
+
+        <aside class="practice-note" aria-label="실습용 API 키 안내">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 11v6m0-10v1" /></svg>
+          <p><strong>로컬 실습 전용</strong> 브라우저의 API 키는 숨겨지지 않습니다. 실제 키가 포함된 빌드 결과물은 공개 배포하지 마세요.</p>
+        </aside>
+      </main>
+
+      <footer class="page-footer"><span>LESS NOISE. MORE CONVERSATION.</span><span>Powered by OpenAI Responses API</span></footer>
+    </div>
+
+    <template id="message-template">
+      <article class="message">
+        <div class="message-avatar" aria-hidden="true"></div>
+        <div class="message-body"><p class="message-author"></p><p class="message-text"></p></div>
+      </article>
+    </template>
+    <noscript>이 챗봇을 사용하려면 브라우저에서 JavaScript를 활성화해 주세요.</noscript>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
